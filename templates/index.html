@@ -15,11 +15,10 @@
 
   <div class="container">
 
-    {% for new, des, i in context %}
+    {% for title, contents in context %}
 
-    <img src="{{i}}" alt="">
-    <h3>News: </h3> {{new}}
-    <h4>Content: </h4> {{des}}
+    <h3>News: </h3> {{title}}
+    <h4>Content: </h4> {{contents}}
 
     {% endfor %}
 

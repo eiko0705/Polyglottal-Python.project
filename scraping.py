@@ -8,43 +8,45 @@ import urllib.error
 import re
 
 
-# url definition
-url = "https://www.japantimes.co.jp/"
+def scraping():
 
-# create array for storing each article href
-list_links = []
+    # url definition
+    url = "https://www.japantimes.co.jp/"
 
-html_page = urllib.request.urlopen(url)
-soup = BeautifulSoup(html_page, 'html5lib')
-for link in soup.find_all('a', class_='top-story'):
-    list_links.append(link.get('href'))
+    # create array for storing each article href
+    list_links = []
+
+    html_page = urllib.request.urlopen(url)
+    soup = BeautifulSoup(html_page, 'html5lib')
+    for link in soup.find_all('a', class_='top-story'):
+        list_links.append(link.get('href'))
+
+    # Empty lists for content, links and titles
+    news_contents = []
+    list_titles = []
+
+    for link in list_links:
+        article = requests.get(link)
+        article_content = article.content
+        soup_article = BeautifulSoup(article_content, 'html5lib')
+
+        # Reading the content (it is divided in paragraphs)
+        title = soup_article.find('h1')
+        list_titles.append(title)
+
+        # Reading the content (it is divided in paragraphs)
+        body = soup_article.find_all('div', class_='entry')
+        x = body[0].find_all('p')
+
+        # Unifying the paragraphs
+        list_paragraphs = []
+        for p in np.arange(0, len(x)):
+            paragraph = x[p].get_text()
+            list_paragraphs.append(paragraph)
+            final_article = " ".join(list_paragraphs)
+
+        news_contents.append(final_article)
 
 
-# Empty lists for content, links and titles
-news_contents = []
-list_titles = []
-
-for link in list_links:
-    article = requests.get(link)
-    article_content = article.content
-    soup_article = BeautifulSoup(article_content, 'html5lib')
-
-    # Reading the content (it is divided in paragraphs)
-    title = soup_article.find('h1')
-    list_titles.append(title)
-
-    # Reading the content (it is divided in paragraphs)
-    body = soup_article.find_all('div', class_='entry')
-    x = body[0].find_all('p')
-
-    # Unifying the paragraphs
-    list_paragraphs = []
-    for p in np.arange(0, len(x)):
-        paragraph = x[p].get_text()
-        list_paragraphs.append(paragraph)
-        final_article = " ".join(list_paragraphs)
-
-    news_contents.append(final_article)
-
-print(list_titles)
-# print(news_contents[3])
+if __name__ == '__main__':
+    scraping()
