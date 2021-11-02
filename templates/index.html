@@ -1,5 +1,29 @@
-{% extends "layout.html" %}
-{% block content %}
-<h3>Hello</h3>
-こんにちは。{{ name }}さん。
-{% endblock %}
+<!doctype html>
+<html>
+<head>
+<title>{{ title }}</title>
+</head>
+<body>
+
+  <div class="jumbotron" style="color:black">
+
+    <h1 style="color:black">
+        News Summary Application
+    </h1>
+
+  </div>
+
+  <div class="container">
+
+    {% for new, des, i in context %}
+
+    <img src="{{i}}" alt="">
+    <h3>News: </h3> {{new}}
+    <h4>Content: </h4> {{des}}
+
+    {% endfor %}
+
+  </div>
+<!-- ここにメインコンテンツを書く -->
+</body>
+</html>
