@@ -48,6 +48,8 @@ def scraping():
 
         news_contents.append(final_article)
 
+    print(news_contents[0])
+
     mylist = zip(list_titles, news_contents)
 
     return mylist

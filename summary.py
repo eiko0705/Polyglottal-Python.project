@@ -30,4 +30,5 @@ def lexrank_summary():
     return summary_list
 
 
-lexrank_summary()
+if __name__ == '__main__':
+    lexrank_summary()

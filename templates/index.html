@@ -15,10 +15,11 @@
 
   <div class="container">
 
-    {% for title, contents in context %}
+    {% for title, contents, summary in context %}
 
     <h3>News: </h3> {{title}}
     <h4>Content: </h4> {{contents}}
+    <h4>Summary</h4> {{summary}}
 
     {% endfor %}
 
