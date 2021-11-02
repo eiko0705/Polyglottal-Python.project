@@ -11,20 +11,7 @@ import re
 # url definition
 url = "https://www.japantimes.co.jp/"
 
-# # request
-# r = requests.get(url)
-# r.status_code
-
-# # save into the coverpage variable
-# coverpage = r.content
-
-# # soup creation
-# soup = BeautifulSoup()
-
-# # news indentification
-# coverpage_news = soup.find_all('a', class_='top-story')
-
-# print(coverpage_news[0])
+# create array for storing each article href
 list_links = []
 
 html_page = urllib.request.urlopen(url)
@@ -38,11 +25,15 @@ news_contents = []
 list_titles = []
 
 for link in list_links:
-
-    # Reading the content (it is divided in paragraphs)
     article = requests.get(link)
     article_content = article.content
     soup_article = BeautifulSoup(article_content, 'html5lib')
+
+    # Reading the content (it is divided in paragraphs)
+    title = soup_article.find('h1')
+    list_titles.append(title)
+
+    # Reading the content (it is divided in paragraphs)
     body = soup_article.find_all('div', class_='entry')
     x = body[0].find_all('p')
 
@@ -55,5 +46,5 @@ for link in list_links:
 
     news_contents.append(final_article)
 
-
-print(news_contents[3])
+print(list_titles)
+# print(news_contents[3])
