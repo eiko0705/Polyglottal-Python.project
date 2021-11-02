@@ -31,7 +31,8 @@ def scraping():
         soup_article = BeautifulSoup(article_content, 'html5lib')
 
         # Reading the content (it is divided in paragraphs)
-        title = soup_article.find('h1')
+        title_with_tag = soup_article.find('h1')
+        title = title_with_tag.get_text()
         list_titles.append(title)
 
         # Reading the content (it is divided in paragraphs)
@@ -46,6 +47,10 @@ def scraping():
             final_article = " ".join(list_paragraphs)
 
         news_contents.append(final_article)
+
+    mylist = zip(list_titles, news_contents)
+
+    return mylist
 
 
 if __name__ == '__main__':
