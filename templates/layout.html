@@ -8,29 +8,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- my own css -->
+    <style type="text/css">
+    .jumbotron {
+      background: linear-gradient(-135deg, yellow, red, black 60%) fixed;
+      margin: 0;
+      padding: 2em;
+    }
+    h1 {
+      font-family: 'Ubuntu';
+      font-size: 4em;
+      color: white;
+    }
+    .lead {
+      font-size: 1.5em;
+      color: white;
+    }
+    .container-fluid {
+      padding: 2em;
+      background-image: url(/static/image/pexels-markus-spiske-225250.jpg);
+      background-color:rgba(255,255,255,0.);
+      background-size: contain;
+    }
+    article {
+      background-color: rgba(255, 255, 255, 0.8);
+      margin: 30px;
+      padding: 30px;
+    }
+    h2 {
+      font-family: 'Ubuntu';
+    }
+    .category {
+      background-color: black;
+      color: white;
+      font-family: 'Ubuntu';
+      font-size: 1.5em;
+      padding: 0.5em;
+      line-height: 3.5em;
+    }
+    p {
+      font-family: sans-serif;
+    }
+    .grad-item {
+      position: relative;
+      overflow: hidden;
+      height: 100px; /*隠した状態の高さ*/
+    }
+    .grad-item::before {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40px; /*グラデーションで隠す高さ*/
+      background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.9) 50%, #fff 100%);
+      background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.9) 50%, #fff 100%);
+      content: "";
+    }
+    .grad-trigger {
+      display: none; /*チェックボックスは常に非表示*/
+    }
+    .grad-trigger:checked + .grad-btn {
+      display: none; /*チェックされていたら、grad-btnを非表示にする*/
+    }
+    .grad-trigger:checked ~ .grad-item {
+      height: auto; /*チェックされていたら、高さを戻す*/
+    }
+    .grad-trigger:checked ~ .grad-item::before {
+      display: none; /*チェックされていたら、grad-itemのbeforeを非表示にする*/
+    }
+    </style>
   </head>
   <body>
-
-    <div class="jumbotron" style="color:black">
-
-      <h1 style="color:black">News Summary Application</h1>
+    <header class="jumbotron" style="color:black">
+      <div class="container header">
+        {% block headline %}{% endblock %}
+        {% block subtitle %}{% endblock %}
+      </div>
       
+    </header>
+
+    <div class="container-fluid">
+        {% for title, summary, contents in context %}
+        <article class="container">
+          <h2 class="h2">{{title}}</h2> 
+          <span class="category">Summary</span>
+          <p>{{summary}}</p>
+          <span class="category">Original</span>
+          <div class="grab-wrap">
+            <input id="trigger1" class="grad-trigger" type="checkbox">
+            <label type="button" class="btn btn-primary" for="trigger1">Read More</label>
+            <p class="grad-item">{{contents}}</p>
+          </div>
+        </article>
+        {% endfor %}
     </div>
 
-    {% block test %}
-    {% endblock %}
-
-    <div class="container">
-
-      {% for title, contents, summary in context %}
-
-      <h3>News: </h3> {{title}}
-      <h4>Content: </h4> {{contents}}
-      <h4>Summary</h4> {{summary}}
-
-      {% endfor %}
-
-    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

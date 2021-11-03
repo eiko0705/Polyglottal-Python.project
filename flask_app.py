@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import scraping
 import summary
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 
 
 @app.route('/')
@@ -21,7 +21,7 @@ def index():
 
     summary_contents = summary.lexrank_summary()
 
-    mylist = zip(titles, original_contents, summary_contents)
+    mylist = zip(titles, summary_contents, original_contents)
     return render_template('index.html', title='News Summary App', context=mylist)
 
 
