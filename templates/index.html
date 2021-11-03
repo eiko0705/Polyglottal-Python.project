@@ -1,29 +1,5 @@
-<!doctype html>
-<html>
-<head>
-<title>{{ title }}</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-  <div class="jumbotron" style="color:black">
-
-    <h1 style="color:black">
-        News Summary Application
-    </h1>
-
-  </div>
-
-  <div class="container">
-
-    {% for title, contents, summary in context %}
-
-    <h3>News: </h3> {{title}}
-    <h4>Content: </h4> {{contents}}
-    <h4>Summary</h4> {{summary}}
-
-    {% endfor %}
-
-  </div>
-<!-- ここにメインコンテンツを書く -->
-</body>
-</html>
+{% block headline %}
+News Summary Application
+{% endblock %}
