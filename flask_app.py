@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import scraping
 import summary
+import summary_translate
 
 app = Flask(__name__, static_folder="static")
 
