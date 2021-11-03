@@ -24,7 +24,6 @@ def scraping():
     # Empty lists for content, links and titles
     news_contents = []
     list_titles = []
-    image_urls = []
 
     for link in list_links:
         article = requests.get(link)
@@ -35,10 +34,6 @@ def scraping():
         title_with_tag = soup_article.find('h1')
         title = title_with_tag.get_text()
         list_titles.append(title)
-
-        # Reading the image
-        image = soup_article.find('img')
-        image_urls.append(image.get('src'))
 
         # Reading the content (it is divided in paragraphs)
         body = soup_article.find_all('div', class_='entry')
@@ -53,10 +48,7 @@ def scraping():
 
         news_contents.append(final_article)
 
-    print(image_urls)
-
     mylist = zip(list_titles, news_contents)
-
     return mylist
 
 

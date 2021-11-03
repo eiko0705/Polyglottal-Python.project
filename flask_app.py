@@ -8,16 +8,14 @@ app = Flask(__name__, static_folder="static")
 @app.route('/')
 def index():
 
-    original_contents = []
     titles = []
+    original_contents = []
 
     mylist = scraping.scraping()
 
     for title, content in mylist:
         titles.append(title)
         original_contents.append(content)
-
-    print(original_contents[0])
 
     summary_contents = summary.lexrank_summary()
 

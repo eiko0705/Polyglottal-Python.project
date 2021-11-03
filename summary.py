@@ -23,9 +23,12 @@ def lexrank_summary():
         summarizer = LexRankSummarizer()
 
         # summarize the document with 3 sentences
-        summary = summarizer(parser.document, 3)
+        summary_tuple = summarizer(parser.document, 3)
 
-        summary_list.append(summary)
+        # convert tuple to string
+        summary_str = ' '.join(map(str, summary_tuple))
+
+        summary_list.append(summary_str)
 
     return summary_list
 
