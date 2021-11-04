@@ -44,7 +44,9 @@ python flask_app.py
 ```
 
 # Tech Stack 🤖
-I used 
+I used Python for language, Flask for flamework, Beautiful for scraping, sumy for summarizing, and googletrans for translating.  
+<img src="https://user-images.githubusercontent.com/83794734/140274887-b22bc6d6-8a71-4bc8-8367-46fd93edf3da.png" width="250px">
+<img src="https://user-images.githubusercontent.com/83794734/140274986-12f2c675-5e74-4a7f-8668-a09eecc486a4.png" width="250px">
 
 
 
