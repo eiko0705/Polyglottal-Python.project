@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <!-- front-awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     
     <!-- my own css -->
     <style type="text/css">
@@ -28,7 +30,7 @@
       color: white;
     }
     .container-fluid {
-      padding: 2em;
+      padding: 1em;
       background-image: url(/static/image/pexels-markus-spiske-225250.jpg);
       background-color:rgba(255,255,255,0.);
       background-size: contain;
@@ -49,10 +51,23 @@
       padding: 0.5em;
       line-height: 3.5em;
     }
+    .button {
+      text-align: center;
+    }
+    #english_summary {
+      padding: 1em;
+      margin: 0.5em;
+      background-color: white;
+    }
+    #japanese_summary {
+      padding: 1em;
+      margin: 0.5em;
+      background-color: white;
+    }
     p {
       font-family: sans-serif;
     }
-    /* read more */
+    /* read more style*/
     .grad-item {
       position: relative;
       overflow: hidden;
@@ -89,21 +104,37 @@
         {% block headline %}{% endblock %}
         {% block subtitle %}{% endblock %}
       </div>
-      
     </header>
 
     <div class="container-fluid">
         {% for title, summary, contents in context %}
         <article class="container">
+
+          <!-- title -->
           <h2 class="h2">{{title}}</h2>
+
+          <!-- summary -->
           <span class="category">Summary</span>
-          <p>{{summary}}</p>
+          <form method="POST" action="/">
+            <p id="english_summary" class="summary">{{summary}}</p>
+            <div class="button">
+              <input type="submit" class="btn btn-warning" value="Translate to Japanese" name="click" />
+            </div>
+            {% if translate %}
+            <p id="japanese_summary" class="summary">{{translate}}</p>
+            {% else %}
+            <p id="japanese_summary" class="summary">You don't feel like reading English today？🥺</p>
+            {% endif %}
+          </form>
+
+          <!-- original article -->
           <span class="category">Original</span>
           <div class="grab-wrap">
             <input id="trigger1" class="grad-trigger" type="checkbox">
             <label type="button" class="btn btn-primary" for="trigger1">Read More</label>
             <p class="grad-item">{{contents}}</p>
           </div>
+
         </article>
         {% endfor %}
     </div>
