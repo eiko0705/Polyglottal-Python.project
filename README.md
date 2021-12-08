@@ -1,8 +1,8 @@
 This was created during my time as a student at Code Chrysalis.
 # New News App 📰
-1. [About](#About)
-2. [Getting Started](#Getting%20Started)
-3. [Tech Stack](#Tech%20Stack)
+1. [About 💁‍♀️](#about-)
+2. [Getting Started 👊](#getting-started-)
+3. [Tech Stack 🤖](#tech-stack-)
 
 # About 💁‍♀️
 If you use this App, you can easily check the latest news of "The Japan Times" even when you are busy.  
