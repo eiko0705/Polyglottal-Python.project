@@ -17,7 +17,7 @@ def scraping():
     list_links = []
 
     html_page = urllib.request.urlopen(url)
-    soup = BeautifulSoup(html_page, 'html5lib')
+    soup = BeautifulSoup(html_page, 'lxml')
     for link in soup.find_all('a', class_='top-story'):
         list_links.append(link.get('href'))
 
@@ -28,7 +28,7 @@ def scraping():
     for link in list_links:
         article = requests.get(link)
         article_content = article.content
-        soup_article = BeautifulSoup(article_content, 'html5lib')
+        soup_article = BeautifulSoup(article_content, 'lxml')
 
         # Reading the title
         title_with_tag = soup_article.find('h1')
